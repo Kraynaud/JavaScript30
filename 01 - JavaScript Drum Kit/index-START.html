@@ -59,6 +59,23 @@
 
 <script>
 
+const startSound = (k) => {
+  const audio = document.querySelector(`audio[data-key="${k.keyCode}"]`);
+  const key = document.querySelector(`div[data-key="${k.keyCode}"]`);
+  audio.play();
+  key.classList.add('playing');
+};
+
+const endSound = (k) => {
+  k.currentTarget.classList.remove('playing');
+};
+
+window.addEventListener('keydown', startSound);
+const keys = document.querySelectorAll('.key');
+keys.forEach((key) => {
+  key.addEventListener('transitionend', endSound);
+});
+
 </script>
 
 
